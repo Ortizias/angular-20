@@ -10,10 +10,5 @@ import { Product } from '../models/product.model';
   styleUrl: './product-card.component.scss',
 })
 export class ProductCardComponent {
-
   @Input({ required: true }) product!: Product;
-
-  get displayName(): string {
-    return this.product.name.toUpperCase();
-  }
 }

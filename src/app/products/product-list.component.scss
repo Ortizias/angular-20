@@ -1,3 +1,27 @@
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.toggle-btn {
+  padding: 0.6rem 1rem;
+  font-size: 0.95rem;
+  border: 1px solid #1a237e;
+  border-radius: 6px;
+  background: #fff;
+  color: #1a237e;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s, color 0.2s;
+
+  &:hover {
+    background: #1a237e;
+    color: #fff;
+  }
+}
+
 .product-list {
   list-style: none;
   padding: 0;
@@ -6,7 +30,7 @@
   gap: 1rem;
 
   li {
-    display: contents; 
+    display: contents;
   }
 }
 
