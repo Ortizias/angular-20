@@ -1,0 +1,22 @@
+<!-- fix(bug-1): @if garantiza que no se renderiza si product llega undefined -->
+@if (product) {
+  <div class="product-card">
+    <div class="product-header">
+      <span class="product-id">#{{ product.id }}</span>
+      <span class="product-price">{{ product.price | currency:'USD' }}</span>
+    </div>
+
+    <!-- fix(bug-3): se usa el getter displayName en lugar de mutar product.name -->
+    <h3 class="product-name">{{ displayName }}</h3>
+    <p class="product-category">{{ product.category }}</p>
+
+    <!-- fix(bug-4): lógica visual del badge vive en el hijo, no en el padre -->
+    <span
+      class="badge"
+      [class.available]="product.stock > 0"
+      [class.unavailable]="product.stock <= 0"
+    >
+      {{ product.stock > 0 ? 'Disponible' : 'No disponible' }}
+    </span>
+  </div>
+}

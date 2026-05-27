@@ -1,0 +1,18 @@
+.filter-bar {
+  margin-bottom: 1.5rem;
+
+  input {
+    width: 100%;
+    padding: 0.6rem 1rem;
+    font-size: 0.95rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+
+    &:focus {
+      border-color: #1a237e;
+    }
+  }
+}

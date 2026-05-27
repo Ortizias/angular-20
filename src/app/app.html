@@ -2,41 +2,6 @@
   <h1>{{ title }}</h1>
   <p class="subtitle">Catálogo de productos</p>
 
-  <div class="controls">
-    <input
-      type="text"
-      [(ngModel)]="searchTerm"
-      placeholder="Buscar producto..."
-      class="search-input"
-    />
-    <button (click)="toggleAvailability()" class="btn-toggle">
-      {{ showOnlyAvailable ? 'Mostrar todos' : 'Solo disponibles' }}
-    </button>
-  </div>
-
-  <!-- fix(bug-2): length === 0 solo muestra el mensaje cuando no hay resultados -->
-  @if (filteredProducts.length === 0) {
-    <p class="empty-message">No hay productos que coincidan con la búsqueda.</p>
-  }
-
-  <!-- fix(bug-4): track product.id garantiza identidad estable en el DOM -->
-  <ul class="product-list">
-    @for (product of filteredProducts; track product.id) {
-      <li class="product-card">
-        <div class="product-header">
-          <span class="product-id">#{{ product.id }}</span>
-          <span class="product-price">{{ product.price | currency:'USD' }}</span>
-        </div>
-
-        <h3 class="product-name">{{ product.name }}</h3>
-        <p class="product-category">{{ product.category }}</p>
-
-        <span class="badge"
-              [class.available]="product.stock > 0"
-              [class.unavailable]="product.stock <= 0">
-          {{ product.stock > 0 ? 'Disponible' : 'No disponible' }}
-        </span>
-      </li>
-    }
-  </ul>
+  <!-- Día 3: todo el catálogo vive en el componente contenedor -->
+  <app-product-list />
 </div>

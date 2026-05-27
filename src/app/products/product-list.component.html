@@ -1,0 +1,14 @@
+<!-- fix(bug-2): (filterChange) enlazado → el padre actualiza el estado -->
+<app-product-filter (filterChange)="onFilterChange($event)" />
+
+<!-- fix(bug-1): @for itera filteredProducts(), ningún item es undefined -->
+<ul class="product-list">
+  @for (product of filteredProducts(); track product.id) {
+    <!-- fix(bug-4): toda la presentación delegada al hijo -->
+    <li>
+      <app-product-card [product]="product" />
+    </li>
+  } @empty {
+    <li class="empty-state">No se encontraron productos.</li>
+  }
+</ul>
