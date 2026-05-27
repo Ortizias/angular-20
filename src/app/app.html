@@ -2,19 +2,35 @@
   <h1>{{ title }}</h1>
   <p class="subtitle">Catálogo de productos</p>
 
+  <div class="controls">
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      placeholder="Buscar producto..."
+      class="search-input"
+    />
+    <button (click)="toggleAvailability()" class="btn-toggle">
+      {{ showOnlyAvailable ? 'Mostrar todos' : 'Solo disponibles' }}
+    </button>
+  </div>
+
+  <!-- fix(bug-2): length === 0 solo muestra el mensaje cuando no hay resultados -->
+  @if (filteredProducts.length === 0) {
+    <p class="empty-message">No hay productos que coincidan con la búsqueda.</p>
+  }
+
+  <!-- fix(bug-4): track product.id garantiza identidad estable en el DOM -->
   <ul class="product-list">
-    @for (product of products; track product.id) {
+    @for (product of filteredProducts; track product.id) {
       <li class="product-card">
         <div class="product-header">
           <span class="product-id">#{{ product.id }}</span>
-          <!-- fix(bug-2): currency pipe formatea el precio correctamente -->
           <span class="product-price">{{ product.price | currency:'USD' }}</span>
         </div>
 
         <h3 class="product-name">{{ product.name }}</h3>
         <p class="product-category">{{ product.category }}</p>
 
-        <!-- fix(bug-3): > 0 excluye stock=0, que debe mostrar 'No disponible' -->
         <span class="badge"
               [class.available]="product.stock > 0"
               [class.unavailable]="product.stock <= 0">

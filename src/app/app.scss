@@ -76,3 +76,47 @@
     color: #c62828;
   }
 }
+
+.controls {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.search-input {
+  flex: 1;
+  min-width: 180px;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  outline: none;
+
+  &:focus {
+    border-color: #1a237e;
+    box-shadow: 0 0 0 2px rgba(26, 35, 126, 0.15);
+  }
+}
+
+.btn-toggle {
+  padding: 0.5rem 1rem;
+  background: #1a237e;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s;
+
+  &:hover {
+    background: #283593;
+  }
+}
+
+.empty-message {
+  text-align: center;
+  color: #999;
+  font-size: 0.95rem;
+  padding: 2rem 0;
+}
