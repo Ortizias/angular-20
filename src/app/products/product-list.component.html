@@ -8,7 +8,9 @@
 <ul class="product-list">
   @for (product of filteredProducts(); track product.id) {
     <li>
-      <app-product-card [product]="product" />
+      <a [routerLink]="['/products', product.id]" class="card-link">
+        <app-product-card [product]="product" />
+      </a>
     </li>
   } @empty {
     <li class="empty-state">No se encontraron productos.</li>

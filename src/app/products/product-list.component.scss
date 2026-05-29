@@ -34,6 +34,18 @@
   }
 }
 
+.card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  border-radius: 8px;
+  transition: transform 0.15s;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
 .empty-state {
   display: block;
   grid-column: 1 / -1;

@@ -1,0 +1,27 @@
+@if (product(); as p) {
+  <div class="detail-card">
+    <a class="back-link" [routerLink]="['/products']">← Volver al catálogo</a>
+
+    <div class="detail-header">
+      <h2 class="detail-name">{{ p.name }}</h2>
+      <span class="detail-price">{{ p.price | currency:'USD' }}</span>
+    </div>
+
+    <p class="detail-category">{{ p.category }}</p>
+
+    <span
+      class="badge"
+      [class.available]="p.stock > 0"
+      [class.unavailable]="p.stock <= 0"
+    >
+      {{ p.stock > 0 ? 'Disponible' : 'No disponible' }}
+    </span>
+
+    <p class="detail-stock">Unidades en stock: {{ p.stock }}</p>
+  </div>
+} @else {
+  <div class="not-found-state">
+    <p>El producto con id <strong>{{ id() }}</strong> no existe.</p>
+    <a [routerLink]="['/products']">← Volver al catálogo</a>
+  </div>
+}
