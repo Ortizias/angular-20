@@ -1,18 +1,32 @@
-<div class="controls">
-  <app-product-filter (filterChange)="onFilterChange($event)" />
-  <button class="toggle-btn" (click)="toggleAvailable()">
-    {{ showOnlyAvailable() ? 'Mostrar todos' : 'Solo disponibles' }}
-  </button>
-</div>
+@if (loading()) {
+  <div class="state-loading">
+    <div class="spinner"></div>
+    <p>Cargando productos...</p>
+  </div>
+} @else if (errorMessage()) {
+  <div class="state-error">
+    <p class="error-text">{{ errorMessage() }}</p>
+    <button class="retry-btn" (click)="load()">Reintentar</button>
+  </div>
+} @else if (products().length === 0) {
+  <div class="state-empty">
+    <p>No hay productos disponibles.</p>
+  </div>
+} @else {
+  <div class="controls">
+    <app-product-filter (filterChange)="onFilterChange($event)" />
+    <button class="toggle-btn" (click)="toggleAvailable()">
+      {{ showOnlyAvailable() ? 'Mostrar todos' : 'Solo disponibles' }}
+    </button>
+  </div>
 
-<ul class="product-list">
-  @for (product of filteredProducts(); track product.id) {
-    <li>
-      <a [routerLink]="['/products', product.id]" class="card-link">
-        <app-product-card [product]="product" />
-      </a>
-    </li>
-  } @empty {
-    <li class="empty-state">No se encontraron productos.</li>
-  }
-</ul>
+  <ul class="product-list">
+    @for (product of filteredProducts(); track product.id) {
+      <li>
+        <a [routerLink]="['/products', product.id]" class="card-link">
+          <app-product-card [product]="product" />
+        </a>
+      </li>
+    }
+  </ul>
+}
