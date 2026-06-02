@@ -1,4 +1,4 @@
-import { Component, computed, inject, input } from '@angular/core';
+import { Component, computed, inject, input, signal } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { ProductService } from './product.service';
@@ -11,11 +11,22 @@ import { ProductService } from './product.service';
   styleUrl: './product-detail.component.scss',
 })
 export class ProductDetailComponent {
-  private readonly productService = inject(ProductService);
+  readonly productService = inject(ProductService);
 
   readonly id = input.required<string>();
 
-  readonly product = computed(() =>
-    this.productService.findById(+this.id())
-  );
+  private readonly version = signal(0);
+
+  readonly product = computed(() => {
+    this.version();
+    return this.productService.findById(+this.id());
+  });
+
+  reserve(): void {
+    const p = this.product();
+    if (p && this.productService.isAvailable(p)) {
+      this.productService.reserve(p.id);
+      this.version.update(v => v + 1);
+    }
+  }
 }

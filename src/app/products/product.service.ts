@@ -19,7 +19,25 @@ export class ProductService {
     return this.items.find(p => p.id === id);
   }
 
+  filter(term: string, onlyAvailable: boolean): Product[] {
+    const t = term.toLowerCase().trim();
+    return this.items.filter(p => {
+      const matchesTerm = !t ||
+        p.name.toLowerCase().includes(t) ||
+        p.category.toLowerCase().includes(t);
+      const matchesAvailability = !onlyAvailable || this.isAvailable(p);
+      return matchesTerm && matchesAvailability;
+    });
+  }
+
   isAvailable(product: Product): boolean {
     return product.stock > 0;
+  }
+
+  reserve(id: number): void {
+    const product = this.items.find(p => p.id === id);
+    if (product && product.stock > 0) {
+      product.stock--;
+    }
   }
 }

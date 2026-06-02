@@ -11,13 +11,17 @@
 
     <span
       class="badge"
-      [class.available]="p.stock > 0"
-      [class.unavailable]="p.stock <= 0"
+      [class.available]="productService.isAvailable(p)"
+      [class.unavailable]="!productService.isAvailable(p)"
     >
-      {{ p.stock > 0 ? 'Disponible' : 'No disponible' }}
+      {{ productService.isAvailable(p) ? 'Disponible' : 'No disponible' }}
     </span>
 
     <p class="detail-stock">Unidades en stock: {{ p.stock }}</p>
+
+    @if (productService.isAvailable(p)) {
+      <button class="reserve-btn" (click)="reserve()">Reservar</button>
+    }
   </div>
 } @else {
   <div class="not-found-state">
