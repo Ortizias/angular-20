@@ -1,0 +1,55 @@
+<div class="form-container">
+  <h2>{{ isEditing ? 'Editar producto' : 'Nuevo producto' }}</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="field">
+      <label for="name">Nombre</label>
+      <input id="name" type="text" formControlName="name" />
+      @if (hasError('name', 'required')) {
+        <span class="error">El nombre es requerido.</span>
+      }
+    </div>
+
+    <div class="field">
+      <label for="price">Precio</label>
+      <input id="price" type="number" formControlName="price" />
+      @if (hasError('price', 'required')) {
+        <span class="error">El precio es requerido.</span>
+      }
+      @if (hasError('price', 'min')) {
+        <span class="error">El precio debe ser mayor a 0.</span>
+      }
+    </div>
+
+    <div class="field">
+      <label for="stock">Stock</label>
+      <input id="stock" type="number" formControlName="stock" />
+      @if (hasError('stock', 'required')) {
+        <span class="error">El stock es requerido.</span>
+      }
+      @if (hasError('stock', 'min')) {
+        <span class="error">El stock no puede ser negativo.</span>
+      }
+    </div>
+
+    <div class="field">
+      <label for="category">Categoría</label>
+      <input id="category" type="text" formControlName="category" />
+      @if (hasError('category', 'required')) {
+        <span class="error">La categoría es requerida.</span>
+      }
+    </div>
+
+    <div class="field field--checkbox">
+      <label>
+        <input type="checkbox" formControlName="active" />
+        Producto activo
+      </label>
+    </div>
+
+    <div class="form-actions">
+      <button type="button" class="btn-cancel" (click)="onCancel()">Cancelar</button>
+      <button type="submit" class="btn-save" [disabled]="form.invalid">Guardar</button>
+    </div>
+  </form>
+</div>

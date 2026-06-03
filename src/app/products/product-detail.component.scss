@@ -72,8 +72,14 @@
   }
 }
 
-.reserve-btn {
+.detail-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
   margin-top: 1.5rem;
+}
+
+.reserve-btn {
   padding: 0.7rem 1.5rem;
   font-size: 1rem;
   font-weight: 600;
@@ -89,14 +95,21 @@
   }
 }
 
-  a {
-    display: inline-block;
-    margin-top: 1rem;
-    color: #1a237e;
-    text-decoration: none;
-    font-weight: 600;
+.edit-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.65rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1a237e;
+  border: 2px solid #1a237e;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
 
-    &:hover {
-      text-decoration: underline;
-    }
+  &:hover {
+    background: #1a237e;
+    color: #fff;
   }
+}

@@ -19,9 +19,12 @@
 
     <p class="detail-stock">Unidades en stock: {{ p.stock }}</p>
 
-    @if (productService.isAvailable(p)) {
-      <button class="reserve-btn" (click)="reserve()">Reservar</button>
-    }
+    <div class="detail-actions">
+      @if (productService.isAvailable(p)) {
+        <button class="reserve-btn" (click)="reserve()">Reservar</button>
+      }
+      <a class="edit-link" [routerLink]="['/products', id(), 'edit']">✏ Editar producto</a>
+    </div>
   </div>
 } @else {
   <div class="not-found-state">

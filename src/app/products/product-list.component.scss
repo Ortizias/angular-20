@@ -22,6 +22,23 @@
   }
 }
 
+.new-btn {
+  margin-left: auto;
+  padding: 0.6rem 1.1rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  background: #1a237e;
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.2s;
+  white-space: nowrap;
+
+  &:hover {
+    background: #283593;
+  }
+}
+
 .product-list {
   list-style: none;
   padding: 0;

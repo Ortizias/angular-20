@@ -18,6 +18,7 @@
     <button class="toggle-btn" (click)="toggleAvailable()">
       {{ showOnlyAvailable() ? 'Mostrar todos' : 'Solo disponibles' }}
     </button>
+    <a class="new-btn" [routerLink]="['/products/new']">+ Nuevo producto</a>
   </div>
 
   <ul class="product-list">
