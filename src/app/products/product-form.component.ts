@@ -20,7 +20,7 @@ export class ProductFormComponent implements OnInit {
   readonly form = this.fb.group({
     name:     ['',   Validators.required],
     price: [0, [Validators.required, Validators.min(0.01)]],
-    stock:    ['',   Validators.required],
+    stock:    [0,   Validators.required],
     category: ['',   Validators.required],
     active:   [true],
   });
@@ -30,10 +30,19 @@ export class ProductFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.isEditing) {
-      const product = this.productService.findById(+this.id()!);
+  if (this.isEditing) {
+    const product = this.productService.findById(+this.id()!);
+    if (product) {
+      this.form.patchValue({
+        name:     product.name,
+        price:    product.price,
+        stock:    product.stock,
+        category: product.category,
+        active:   true,
+      });
     }
   }
+}
 
   hasError(field: string, error: string): boolean {
     const control = this.form.get(field);
